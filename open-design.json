@@ -1,0 +1,142 @@
+{
+  "$schema": "https://open-design.ai/schemas/plugin.v1.json",
+  "specVersion": "1.0.0",
+  "name": "ux-practice-companion",
+  "title": "UX practice companion",
+  "title_i18n": {
+    "en": "UX practice companion",
+    "zh-CN": "UX 实践伙伴",
+    "de": "UX-Praxis-Begleiter",
+    "fr": "Compagnon de pratique UX",
+    "es": "Compañero de práctica UX",
+    "ja": "UXプラクティスコンパニオン"
+  },
+  "version": "0.1.0",
+  "description": "Conversational companion that embeds non-visual UX best practice — workflow, accessibility, modularization, customizability — into any design or build task, and audits menus, settings and documentation against current best practice.",
+  "description_i18n": {
+    "en": "Conversational companion that embeds non-visual UX best practice — workflow, accessibility, modularization, customizability — into any design or build task, and audits menus, settings and documentation against current best practice.",
+    "zh-CN": "对话式伙伴，把非视觉的 UX 最佳实践——工作流、无障碍、模块化、可定制性——融入任何设计或构建任务，并按当前最佳实践审查菜单、设置与文档。",
+    "de": "Konversationeller Begleiter, der nicht-visuelle UX-Best-Practices – Workflow, Barrierefreiheit, Modularisierung, Anpassbarkeit – in jede Design- oder Build-Aufgabe einbindet und Menüs, Einstellungen und Dokumentation nach aktuellen Best Practices prüft.",
+    "fr": "Compagnon conversationnel qui intègre les meilleures pratiques UX non visuelles — workflow, accessibilité, modularisation, personnalisabilité — à toute tâche de conception, et audite menus, réglages et documentation selon les meilleures pratiques actuelles.",
+    "es": "Compañero conversacional que incorpora las mejores prácticas UX no visuales —flujo de trabajo, accesibilidad, modularización, personalización— a cualquier tarea de diseño, y audita menús, ajustes y documentación según las mejores prácticas actuales.",
+    "ja": "視覚以外のUXベストプラクティス（ワークフロー、アクセシビリティ、モジュール化、カスタマイズ性）をあらゆる設計・構築タスクに会話形式で組み込み、メニュー・設定・ドキュメントを最新のベストプラクティスで監査するコンパニオン。"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "techne-tools"
+  },
+  "tags": [
+    "ux",
+    "accessibility",
+    "workflow",
+    "audit",
+    "best-practice",
+    "scenario"
+  ],
+  "compat": {
+    "agentSkills": [
+      {
+        "path": "./SKILL.md"
+      }
+    ]
+  },
+  "od": {
+    "kind": "scenario",
+    "taskKind": "new-generation",
+    "scenario": "ux-practice",
+    "mode": "scenario",
+    "context": {
+      "skills": [
+        {
+          "path": "./SKILL.md"
+        },
+        {
+          "path": "./references/practice-checklists.md"
+        }
+      ]
+    },
+    "pipeline": {
+      "stages": [
+        {
+          "id": "discovery",
+          "atoms": [
+            "discovery-question-form"
+          ]
+        },
+        {
+          "id": "plan",
+          "atoms": [
+            "todo-write"
+          ]
+        },
+        {
+          "id": "build",
+          "atoms": [
+            "file-write",
+            "live-artifact"
+          ]
+        },
+        {
+          "id": "practice-review",
+          "atoms": [
+            "critique-theater"
+          ],
+          "repeat": true,
+          "until": "critique.score>=4 || iterations>=3"
+        }
+      ]
+    },
+    "capabilities": [
+      "prompt:inject"
+    ],
+    "useCase": {
+      "query": {
+        "en": "Apply UX practice to {{uxTask}}. Run the practice-first conversational workflow: clarify users, tasks and constraints, plan workflow paths and modular parts, build with accessibility (WCAG 2.2 {{wCagLevel}}) and customizability built in, then review menus, settings and documentation against the practice checklists.",
+        "zh-CN": "对 {{uxTask}} 应用 UX 实践。运行实践优先的对话式工作流：澄清用户、任务与约束，规划工作流路径与模块划分，以内建无障碍（WCAG 2.2 {{wCagLevel}}）和可定制性进行构建，然后按实践清单审查菜单、设置与文档。",
+        "de": "Wende UX-Praxis auf {{uxTask}} an. Führe den praxisorientierten konversationellen Workflow aus: Nutzer, Aufgaben und Einschränkungen klären, Workflow-Pfade und modulare Teile planen, mit Barrierefreiheit (WCAG 2.2 {{wCagLevel}}) und Anpassbarkeit bauen, dann Menüs, Einstellungen und Dokumentation gegen die Praxis-Checklisten prüfen.",
+        "fr": "Applique la pratique UX à {{uxTask}}. Déroule le workflow conversationnel axé pratique : clarifier utilisateurs, tâches et contraintes, planifier les parcours et les parties modulaires, construire avec accessibilité (WCAG 2.2 {{wCagLevel}}) et personnalisabilité intégrées, puis auditer menus, réglages et documentation selon les checklists.",
+        "es": "Aplica la práctica UX a {{uxTask}}. Ejecuta el flujo conversacional orientado a la práctica: clarificar usuarios, tareas y restricciones, planificar rutas de trabajo y partes modulares, construir con accesibilidad (WCAG 2.2 {{wCagLevel}}) y personalización integradas, y auditar menús, ajustes y documentación con las listas de verificación.",
+        "ja": "{{uxTask}}にUXプラクティスを適用します。実践優先の対話ワークフローを実行します：ユーザー・タスク・制約を明確にし、ワークフローパスとモジュール構成を計画し、アクセシビリティ（WCAG 2.2 {{wCagLevel}}）とカスタマイズ性を組み込んで構築し、メニュー・設定・ドキュメントを実践チェックリストでレビューします。"
+      },
+      "exampleOutputs": [
+        {
+          "path": "./examples/sample-session.md",
+          "title": "Example conversational session"
+        },
+        {
+          "path": "./references/practice-checklists.md",
+          "title": "Practice checklists (normative for review)"
+        },
+        {
+          "path": "./references/findings-report-template.md",
+          "title": "Findings report template"
+        }
+      ]
+    },
+    "inputs": [
+      {
+        "name": "uxTask",
+        "type": "string",
+        "required": true,
+        "label": "Task to apply UX practice to",
+        "placeholder": "onboarding flow for a data export tool"
+      },
+      {
+        "name": "wCagLevel",
+        "type": "string",
+        "required": false,
+        "default": "AA",
+        "label": "WCAG conformance target",
+        "placeholder": "AA"
+      },
+      {
+        "name": "focusLenses",
+        "type": "string",
+        "required": false,
+        "default": "workflow, accessibility, modularization, customizability",
+        "label": "Lenses to prioritize",
+        "placeholder": "accessibility, customizability"
+      }
+    ]
+  }
+}
