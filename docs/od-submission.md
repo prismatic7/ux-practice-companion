@@ -80,12 +80,24 @@ that produced 0.2.0, this submission note, and the validator. A catalog folder n
 
 ## How to submit
 
+**Status: held (2026-11-09). The PR has not been opened.** Decision taken deliberately, not
+by omission. Revisit when there is one real run inside OpenDesign against an actual project —
+that converts the "unverified" list below into evidence, and it is the first thing a reviewer
+asks for. The command sequence is ready and needs no edits when that happens.
+
+Why it is worth doing at all, and why not to wait on it: measured on 2026-11-09, plugin PRs
+get their first review activity in 2–7 days but merge slowly — 22 "Add … plugin" PRs open,
+oldest since 2026-07-16, last community plugin merge 2026-07-29. Open it for the review and
+the provenance, not for the catalogue entry.
+
 Three paths, in the order the OpenDesign UI offers them on the plugin-folder card:
 
 1. **Add to My plugins** — satisfied already in the product: Integration view → My plugins →
    add local plugin → this folder.
 2. **Publish repo** — done: https://github.com/prismatic7/ux-practice-companion (public, MIT).
-3. **OpenDesign PR** — a draft PR against `nexu-io/open-design` adding the folder above.
+3. **OpenDesign PR** — a PR against `nexu-io/open-design` adding the folder above. Open it
+   non-draft: engagement follows normal PRs within days, and OD's own button creates a draft,
+   which in a backlogged lane can sit unrequested.
 
 Without the OD CLI, the PR is the manual route:
 
