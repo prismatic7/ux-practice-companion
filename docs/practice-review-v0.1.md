@@ -16,6 +16,10 @@ deleted; they are answered in the column at the end.
   practice, menus, settings, documentation, plus the OpenDesign contribution contract
 - **Scope reviewed:** every file in the repository at commit `d3dbcd7`
 
+Line references in this review point at that commit; read them with
+`git show d3dbcd7:references/practice-checklists.md` and so on. The files have since been
+rewritten, which is the point of keeping this document.
+
 ## Summary
 
 The instrument is well-shaped: four lenses, source tags, severity, honest nulls, declined
