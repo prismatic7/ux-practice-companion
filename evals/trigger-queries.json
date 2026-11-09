@@ -1,0 +1,23 @@
+{
+  "skill_name": "ux-practice-companion",
+  "notes": "Activation probes. The description should fire on review-shaped requests about use, reach, attention or control, and stay quiet on visual or asset requests, which belong to other plugins.",
+  "should_trigger": [
+    "Review this settings page before we ship it.",
+    "Is this flow usable by keyboard only?",
+    "Audit our menus and settings against best practice.",
+    "The app pings people a lot — is that too much?",
+    "Check this prototype against WCAG AA.",
+    "We are about to hand this over. What will bite us?",
+    "Does this onboarding make sense for someone on a screen reader?",
+    "Review the copy in these error messages."
+  ],
+  "should_not_trigger": [
+    "Make this landing page prettier.",
+    "Pick a colour palette for my brand.",
+    "Generate a hero image for the homepage.",
+    "Build me a slide deck about our product.",
+    "Write the marketing copy for this feature.",
+    "Refactor this component into a hook.",
+    "Set up the CI pipeline for this repo."
+  ]
+}

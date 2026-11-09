@@ -1,53 +1,93 @@
 # Example session: ux-practice-companion
 
-A short, condensed example of how a session reads. The companion speaks plain,
-asks before assuming, and explains the why.
+A condensed session in the **shipping** register. It shows the three things the plugin
+changes: a register is named before work starts, evidence carries a method, and a deliberate
+break is recorded rather than corrected.
 
 ---
 
-**User:** Build an onboarding flow for a small data-export tool.
+**User:** Build an onboarding flow for a small data-export tool, then review it before we
+put it in front of pilot users.
 
-**Companion:** Understood as: a first-run path for a small tool whose core
-task is exporting data. Before planning, three things decide the shape:
+**Companion:** Understood as: a first-run path for analysts exporting from a small tool, and
+a shipping review before it reaches pilot users. Five things decide the shape; two more can
+wait until the plan.
 
-1. Who runs this tool — engineers, analysts, or mixed, non-technical teams?
-2. Which platform: desktop web, desktop app, or CLI-adjacent?
-3. Accessibility target: WCAG 2.2 AA is the default. Confirm, or raise it?
+1. Who runs this — analysts only, or mixed with non-technical colleagues?
+2. Desktop web, desktop app, or CLI-adjacent?
+3. Does anyone on the pilot use a screen reader, zoom, or a keyboard only? Please say which
+   if you know; "not sure" is a real answer.
+4. Is the interface English-only, or does it ship Arabic or Hebrew too?
+5. Anything fixed — brand, content, deadline?
 
-**User:** Analysts, some non-technical. Desktop web. AA is fine.
+**User:** Analysts, some non-technical. Desktop web. One pilot user is a keyboard-only user
+with low vision. English-only for now, Arabic later. No hard date.
 
-**Companion:** Then the plan is:
+**Companion:** Then the plan, in this order:
 
-1. Workflow path: sign in → connect a source → pick fields → preview →
-   export, with a recovery step at each stage and an empty state on first run.
-2. Modular parts: source-picker, field-list, preview-table, export-summary —
-   each with its own states (empty, loading, error, done), reusable outside
-   onboarding.
-3. Accessibility: keyboard-completable end to end, 24 px targets, errors in
-   text next to fields, no color-only status.
-4. Customizability: default export settings that work untouched; column
-   order and delimiter persist per user.
+1. Path: sign in → connect a source → pick fields → preview → export, with recovery at each
+   step and a real first-run empty state.
+2. Parts and contracts: `source-picker`, `field-list`, `preview-table`, `export-summary`.
+   Each owns its five states and works outside onboarding.
+3. Accessibility: keyboard-completable end to end, focus order following the visual order,
+   24 px targets minimum, 44 px on the toolbar, errors in text beside the field, status
+   never by colour alone.
+4. Attention budget: nothing interrupts in the flow. Export progress is ambient in the
+   header, promotes to a banner on failure, never a modal — a modal would block the pilot
+   user mid-task for something they can act on later.
+5. Customizability: export defaults work untouched; column order and delimiter persist per
+   user.
 
-I'll build against that, then run the practice checklists — workflow,
-accessibility, modularization, customizability, plus the menus / settings /
-documentation surface pass.
+Building against that, then a full practice review. Screen-reader behaviour will come back
+not verified — there is no assistive technology in this environment.
 
 *(build happens)*
 
-**Companion — practice review.** Reviewed against WCAG 2.2 (current W3C TR)
-and the practice checklists v1. Two findings:
+**Companion — practice review.** Reviewed against WCAG 2.2 (ed. 12 December 2024),
+ISO 9241-110:2020 and the practice checklists v2. Blockers first.
 
-- **Blocker (accessibility, REQ):** the preview table's sort control is
-  drag-only, with no button alternative (WCAG 2.2 SC 2.5.7). Smallest fix:
-  add sort-ascending / sort-descending buttons beside each header.
-- **Major (customizability, PRAC):** the delimiter setting exists but resets
-  on reload. Smallest fix: persist the choice with the user's profile.
+1. **Preview table sorts by drag only**
+   - Lens: accessibility
+   - Source: REQ — WCAG 2.2 SC 2.5.7
+   - Method: INSPECTED — walked the header row; the only pointer handler is `dragstart`
+   - Evidence: `preview-table.tsx` headers expose drag handles, no button, no keyboard path
+   - Impact: the keyboard-only pilot user cannot sort at all; sorting is on the primary path
+   - Smallest fix: ascending/descending buttons in each header, drag kept as an alternative
 
-Everything else passed. Apply both fixes, or which?
+2. **Column header text at 3.1:1 on the header fill**
+   - Lens: accessibility
+   - Source: REQ — WCAG 2.2 SC 1.4.3
+   - Method: MEASURED — 3.14:1, `#6b7280` on `#f3f4f6`, computed from the rendered styles
+   - Impact: header text is unreadable for the low-vision user at default zoom
+   - Smallest fix: darken the header text token to at least 4.5:1 on that fill
 
-**User:** Both.
+Majors: 2 more (`delimiter resets on reload`; `export progress announced by colour only`).
+Minors: 3 (`target size 22 px on the row menu`; `error text below the field is 6 px away from
+it`; `empty state has no action`). Say the word and I will expand any of them.
 
-**Companion:** Applied. Re-ran sections 2 and 4 of the checklists — both pass
-now. One honest unknown left: I could not verify screen reader behavior
-locally; recommend a NVDA/VoiceOver pass before release. Summary: onboarding
-path built, 4 components, 7/7 checklist sections passing, 1 unverified item.
+**Deliberate breaks:** none recorded yet — I have one question before I record the third
+minor. The empty state's shape is unusually bare. Is that a direction you chose, or an
+unfinished placeholder?
+
+**User:** Chosen. It's the same bare frame as the rest of the tool.
+
+**Companion:** Recorded as a deliberate break with that reason — not counted as a defect, and
+the empty state's missing action stands as a minor only if you want it to.
+
+**Not verified:** screen-reader announcement order and live-region behaviour — no assistive
+technology here. Reflow on a real 320 px viewport — no device matrix. Both need a pass with
+the pilot user's actual setup before release.
+
+**User:** Apply the two blockers and the delimiter fix.
+
+**Companion:** Applied. Re-ran the affected sections: accessibility 1.4.3 and 2.5.7 pass
+(header text now 4.71:1 measured; sort buttons reachable in the tab order and in the DOM
+order); steerable passes for persistence.
+
+- Checklist status: attention 12/12 · workflow 6 pass, 1 not verified · accessibility
+  1 blocker closed, 2 not verified · composable 6/6 · steerable 5/5 · menus N/A ·
+  settings 5/5 · documentation N/A · practice 7/7.
+- Declined: none. Deliberate: bare empty state.
+- **Practice note:** the flow's own progress handling was the hard part — an ambient
+  header state was enough, and the modal we started with was solving our anxiety, not the
+  analyst's task.

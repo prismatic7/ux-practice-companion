@@ -1,0 +1,61 @@
+{
+  "skill_name": "ux-practice-companion",
+  "evals": [
+    {
+      "id": "shipping-review-catches-an-exclusion",
+      "prompt": "Shipping review of this settings page. It is a React component: the 'Remove workspace' control is a <div role=\"button\"> with a click handler, no tabindex, and an icon with no aria-label; the button colour is #9CA3AF on #FFFFFF. Give me the findings.",
+      "expected_output": "A findings report in the template shape. Blockers first: the Remove workspace control is not keyboard reachable and has no accessible name (REQ — WCAG 2.2 SC 2.1.1 / 4.1.2, method INSPECTED), and its text contrast is 2.5:1 on white, below 4.5:1 (REQ — SC 1.4.3, method MEASURED with the ratio quoted). Each blocker carries impact and a smallest fix.",
+      "assertions": [
+        "The report names the register (shipping)",
+        "The unreachable, unlabeled control appears as a blocker, not a minor",
+        "The contrast value is stated as a measured number, not as 'low contrast'",
+        "Every finding carries a source tag and an evidence method",
+        "Each finding has a smallest fix that names a concrete change"
+      ]
+    },
+    {
+      "id": "making-register-does-not-audit-a-sketch",
+      "prompt": "This is my first rough sketch of an onboarding flow — three boxes and a button, nothing wired. Give it a UX review.",
+      "expected_output": "Discovery or a single clarifying question, then a review scoped to the exclusion floor only: keyboard path, accessible names, no meaning by colour alone, honest placeholders. Notes on the rest are one line each with no severity, and the report says the work is expected to be unfinished.",
+      "assertions": [
+        "The register is identified as making",
+        "No minor-severity findings are raised against an unfinished sketch",
+        "The exclusion floor items are still checked",
+        "The report does not recommend visual polish"
+      ]
+    },
+    {
+      "id": "refuses-to-certify-what-it-did-not-check",
+      "prompt": "Just tell me yes or no: is my app accessible? I do not have the files here, but I am fairly sure it is fine.",
+      "expected_output": "A refusal to certify. The companion explains that a review needs the artifact and names what it would inspect and measure; it lists the checks as NOT VERIFIED with the missing instruments, and does not convert the user's confidence into a pass.",
+      "assertions": [
+        "No pass verdict is given without an artifact",
+        "The missing instruments are named",
+        "The word 'certified' or an equivalent compliance claim does not appear",
+        "The user is told what would be needed to actually establish the answer"
+      ]
+    },
+    {
+      "id": "calm-attention-flagged",
+      "prompt": "Review this export screen: when the export finishes it shows a toast, plays a success chime, increments a red badge on the bell, and the progress bar loops. Shipping.",
+      "expected_output": "An attention finding under the calm section: one event using three channels plus a looping animation; the badge is an engagement pattern; the chime is sound by default. Cited to Case (2015) P1/P5 and WCAG 2.2 SC 2.2.2 for the loop. Smallest fix: one channel (status text), ambient progress, sound off by default and opt-in.",
+      "assertions": [
+        "The three-channel notification is flagged",
+        "The finding cites an attention or calm source rather than only WCAG",
+        "The looping progress bar is tied to a pause/stop requirement",
+        "The fix reduces channels rather than restyling them"
+      ]
+    },
+    {
+      "id": "deliberate-break-is-recorded-not-corrected",
+      "prompt": "Shipping review. I know the empty state has no illustration and no CTA. It is deliberate — this tool is used daily by the same four people and a cheerful illustration would be noise. Everything else is fair game.",
+      "expected_output": "The deliberate deviation is recorded under Deliberate breaks with the maker's reason, not counted as a defect and not re-raised. The rest of the review proceeds normally.",
+      "assertions": [
+        "The empty state appears under deliberate breaks, not under findings",
+        "The maker's reason is recorded",
+        "The checklist status does not count the deliberate break as a failure",
+        "The companion does not argue the maker out of it"
+      ]
+    }
+  ]
+}

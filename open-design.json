@@ -11,26 +11,33 @@
     "es": "Compañero de práctica UX",
     "ja": "UXプラクティスコンパニオン"
   },
-  "version": "0.1.0",
-  "description": "Conversational companion that embeds non-visual UX best practice — workflow, accessibility, modularization, customizability — into any design or build task, and audits menus, settings and documentation against current best practice.",
+  "version": "0.2.0",
+  "description": "Conversational companion that holds design and build work to non-visual UX — workflow, attention and calm, accessibility, composability, control — with a cited checklist and an evidence method for every finding.",
   "description_i18n": {
-    "en": "Conversational companion that embeds non-visual UX best practice — workflow, accessibility, modularization, customizability — into any design or build task, and audits menus, settings and documentation against current best practice.",
-    "zh-CN": "对话式伙伴，把非视觉的 UX 最佳实践——工作流、无障碍、模块化、可定制性——融入任何设计或构建任务，并按当前最佳实践审查菜单、设置与文档。",
-    "de": "Konversationeller Begleiter, der nicht-visuelle UX-Best-Practices – Workflow, Barrierefreiheit, Modularisierung, Anpassbarkeit – in jede Design- oder Build-Aufgabe einbindet und Menüs, Einstellungen und Dokumentation nach aktuellen Best Practices prüft.",
-    "fr": "Compagnon conversationnel qui intègre les meilleures pratiques UX non visuelles — workflow, accessibilité, modularisation, personnalisabilité — à toute tâche de conception, et audite menus, réglages et documentation selon les meilleures pratiques actuelles.",
-    "es": "Compañero conversacional que incorpora las mejores prácticas UX no visuales —flujo de trabajo, accesibilidad, modularización, personalización— a cualquier tarea de diseño, y audita menús, ajustes y documentación según las mejores prácticas actuales.",
-    "ja": "視覚以外のUXベストプラクティス（ワークフロー、アクセシビリティ、モジュール化、カスタマイズ性）をあらゆる設計・構築タスクに会話形式で組み込み、メニュー・設定・ドキュメントを最新のベストプラクティスで監査するコンパニオン。"
+    "en": "Conversational companion that holds design and build work to non-visual UX — workflow, attention and calm, accessibility, composability, control — with a cited checklist and an evidence method for every finding.",
+    "zh-CN": "对话式伙伴，把设计与构建工作落实到非视觉 UX——工作流、注意力与平静、无障碍、可组合性、控制力——并附带引用的清单和每条结论的证据方法。",
+    "de": "Konversationeller Begleiter, der Design- und Build-Arbeit an nicht-visueller UX ausrichtet – Workflow, Aufmerksamkeit und Ruhe, Barrierefreiheit, Komponierbarkeit, Kontrolle – mit belegter Checkliste und einer Evidenzmethode für jeden Befund.",
+    "fr": "Compagnon conversationnel qui tient le travail de conception et de construction à une UX non visuelle — parcours, attention et calme, accessibilité, composabilité, maîtrise — avec une checklist sourcée et une méthode de preuve pour chaque constat.",
+    "es": "Compañero conversacional que somete el trabajo de diseño y construcción a la UX no visual —flujo, atención y calma, accesibilidad, composición, control— con una lista de verificación citada y un método de evidencia para cada hallazgo.",
+    "ja": "デザインと構築の仕事を、視覚以外のUX（ワークフロー、注意と静けさ、アクセシビリティ、構成可能性、制御）に照らして支える対話型コンパニオン。引用付きチェックリストと、各指摘の証拠手法を備えます。"
   },
   "license": "MIT",
   "author": {
-    "name": "techne-tools"
+    "name": "Chris Wenn",
+    "url": "https://github.com/prismatic7"
+  },
+  "homepage": "https://github.com/prismatic7/ux-practice-companion",
+  "plugin": {
+    "repo": "https://github.com/prismatic7/ux-practice-companion"
   },
   "tags": [
     "ux",
     "accessibility",
+    "calm-technology",
+    "attention",
     "workflow",
-    "audit",
-    "best-practice",
+    "review",
+    "practice",
     "scenario"
   ],
   "compat": {
@@ -45,6 +52,7 @@
     "taskKind": "new-generation",
     "scenario": "ux-practice",
     "mode": "scenario",
+    "platform": "any",
     "context": {
       "skills": [
         {
@@ -52,7 +60,24 @@
         },
         {
           "path": "./references/practice-checklists.md"
+        },
+        {
+          "path": "./references/calm-technology.md"
+        },
+        {
+          "path": "./references/evidence-methods.md"
+        },
+        {
+          "path": "./references/findings-report-template.md"
         }
+      ],
+      "craft": [
+        "accessibility-baseline",
+        "state-coverage",
+        "animation-discipline",
+        "form-validation",
+        "rtl-and-bidi",
+        "laws-of-ux"
       ]
     },
     "pipeline": {
@@ -91,21 +116,29 @@
     ],
     "useCase": {
       "query": {
-        "en": "Apply UX practice to {{uxTask}}. Run the practice-first conversational workflow: clarify users, tasks and constraints, plan workflow paths and modular parts, build with accessibility (WCAG 2.2 {{wCagLevel}}) and customizability built in, then review menus, settings and documentation against the practice checklists.",
-        "zh-CN": "对 {{uxTask}} 应用 UX 实践。运行实践优先的对话式工作流：澄清用户、任务与约束，规划工作流路径与模块划分，以内建无障碍（WCAG 2.2 {{wCagLevel}}）和可定制性进行构建，然后按实践清单审查菜单、设置与文档。",
-        "de": "Wende UX-Praxis auf {{uxTask}} an. Führe den praxisorientierten konversationellen Workflow aus: Nutzer, Aufgaben und Einschränkungen klären, Workflow-Pfade und modulare Teile planen, mit Barrierefreiheit (WCAG 2.2 {{wCagLevel}}) und Anpassbarkeit bauen, dann Menüs, Einstellungen und Dokumentation gegen die Praxis-Checklisten prüfen.",
-        "fr": "Applique la pratique UX à {{uxTask}}. Déroule le workflow conversationnel axé pratique : clarifier utilisateurs, tâches et contraintes, planifier les parcours et les parties modulaires, construire avec accessibilité (WCAG 2.2 {{wCagLevel}}) et personnalisabilité intégrées, puis auditer menus, réglages et documentation selon les checklists.",
-        "es": "Aplica la práctica UX a {{uxTask}}. Ejecuta el flujo conversacional orientado a la práctica: clarificar usuarios, tareas y restricciones, planificar rutas de trabajo y partes modulares, construir con accesibilidad (WCAG 2.2 {{wCagLevel}}) y personalización integradas, y auditar menús, ajustes y documentación con las listas de verificación.",
-        "ja": "{{uxTask}}にUXプラクティスを適用します。実践優先の対話ワークフローを実行します：ユーザー・タスク・制約を明確にし、ワークフローパスとモジュール構成を計画し、アクセシビリティ（WCAG 2.2 {{wCagLevel}}）とカスタマイズ性を組み込んで構築し、メニュー・設定・ドキュメントを実践チェックリストでレビューします。"
+        "en": "Apply UX practice to {{uxTask}}. Clarify who uses it and what they came to do, settle the register ({{register}}), plan the paths, the modular parts and the attention budget, build with the accessibility floor in place, then review against the practice checklists at WCAG 2.2 {{conformance}} — every finding carrying its source and its evidence method.",
+        "zh-CN": "对 {{uxTask}} 应用 UX 实践。先澄清使用者与目标，确定工作状态（{{register}}），规划路径、模块与注意力预算，在无障碍底线上构建，然后按实践清单以 WCAG 2.2 {{conformance}} 进行审查——每条结论都注明来源与证据方法。",
+        "de": "Wende UX-Praxis auf {{uxTask}} an. Nutzer und Vorhaben klären, das Register festlegen ({{register}}), Pfade, modulare Teile und Aufmerksamkeitsbudget planen, mit dem Barrierefreiheits-Floor bauen, dann gegen die Praxis-Checklisten nach WCAG 2.2 {{conformance}} prüfen – jeder Befund mit Quelle und Evidenzmethode.",
+        "fr": "Applique la pratique UX à {{uxTask}}. Clarifier les utilisateurs et leur but, fixer le registre ({{register}}), planifier les parcours, les parties modulaires et le budget d'attention, construire avec le socle d'accessibilité, puis auditer selon les checklists WCAG 2.2 {{conformance}} — chaque constat portant sa source et sa méthode de preuve.",
+        "es": "Aplica la práctica UX a {{uxTask}}. Aclara quién lo usa y para qué, fija el registro ({{register}}), planifica las rutas, las partes modulares y el presupuesto de atención, construye con el suelo de accesibilidad, y revisa con las listas de verificación en WCAG 2.2 {{conformance}}: cada hallazgo con su fuente y su método de evidencia.",
+        "ja": "{{uxTask}}にUXプラクティスを適用します。利用者と目的を明確にし、レジスター（{{register}}）を決め、経路・モジュール・注意予算を計画し、アクセシビリティの床を敷いて構築したうえで、WCAG 2.2 {{conformance}} に基づき実践チェックリストでレビューします。各指摘には出典と証拠手法を明記します。"
       },
       "exampleOutputs": [
         {
           "path": "./examples/sample-session.md",
-          "title": "Example conversational session"
+          "title": "Example session (shipping register)"
         },
         {
           "path": "./references/practice-checklists.md",
           "title": "Practice checklists (normative for review)"
+        },
+        {
+          "path": "./references/calm-technology.md",
+          "title": "Calm technology: the attention rules"
+        },
+        {
+          "path": "./references/evidence-methods.md",
+          "title": "Evidence methods"
         },
         {
           "path": "./references/findings-report-template.md",
@@ -116,26 +149,69 @@
     "inputs": [
       {
         "name": "uxTask",
-        "type": "string",
+        "type": "text",
         "required": true,
         "label": "Task to apply UX practice to",
-        "placeholder": "onboarding flow for a data export tool"
+        "placeholder": "onboarding flow for a data export tool",
+        "label_i18n": {
+          "en": "Task to apply UX practice to",
+          "zh-CN": "要应用 UX 实践的任务",
+          "de": "Aufgabe, auf die UX-Praxis angewendet wird",
+          "fr": "Tâche à laquelle appliquer la pratique UX",
+          "es": "Tarea a la que aplicar la práctica UX",
+          "ja": "UXプラクティスを適用するタスク"
+        }
       },
       {
-        "name": "wCagLevel",
+        "name": "register",
+        "type": "select",
+        "required": false,
+        "default": "making",
+        "options": [
+          "making",
+          "shipping"
+        ],
+        "label": "Register: making (draft, standards are hypotheses) or shipping (full checklist binds)",
+        "label_i18n": {
+          "en": "Register: making (draft, standards are hypotheses) or shipping (full checklist binds)",
+          "zh-CN": "工作状态：making（草稿，标准是假设）或 shipping（完整清单生效）",
+          "de": "Register: making (Entwurf, Standards sind Hypothesen) oder shipping (vollständige Checkliste bindet)",
+          "fr": "Registre : making (brouillon, les normes sont des hypothèses) ou shipping (la checklist complète s'applique)",
+          "es": "Registro: making (borrador, las normas son hipótesis) o shipping (la lista completa obliga)",
+          "ja": "レジスター：making（草案、基準は仮説）または shipping（全チェックリストが有効）"
+        }
+      },
+      {
+        "name": "conformance",
         "type": "string",
         "required": false,
         "default": "AA",
-        "label": "WCAG conformance target",
-        "placeholder": "AA"
+        "label": "WCAG conformance target (AA default; AAA raises motion and focus criteria)",
+        "placeholder": "AA",
+        "label_i18n": {
+          "en": "WCAG conformance target (AA default; AAA raises motion and focus criteria)",
+          "zh-CN": "WCAG 符合性目标（默认 AA；AAA 会提高动效与焦点要求）",
+          "de": "WCAG-Konformitätsziel (Standard AA; AAA verschärft Motion- und Fokus-Kriterien)",
+          "fr": "Niveau de conformité WCAG (AA par défaut ; AAA durcit les critères de mouvement et de focus)",
+          "es": "Nivel de conformidad WCAG (AA por defecto; AAA endurece movimiento y foco)",
+          "ja": "WCAG 適合レベル（既定はAA。AAAは動きとフォーカスの基準を厳格化）"
+        }
       },
       {
         "name": "focusLenses",
         "type": "string",
         "required": false,
-        "default": "workflow, accessibility, modularization, customizability",
+        "default": "attention, workflow, accessibility, composable, steerable",
         "label": "Lenses to prioritize",
-        "placeholder": "accessibility, customizability"
+        "placeholder": "attention, accessibility",
+        "label_i18n": {
+          "en": "Lenses to prioritize",
+          "zh-CN": "优先关注的视角",
+          "de": "Zu priorisierende Perspektiven",
+          "fr": "Axes à prioriser",
+          "es": "Enfoques a priorizar",
+          "ja": "優先する観点"
+        }
       }
     ]
   }
